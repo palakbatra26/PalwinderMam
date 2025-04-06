@@ -1,0 +1,51 @@
+[
+    {
+      "id": 1,
+      "title": "Dr.Parminder Singh",
+      "description": "Dean",
+      "image": "https://gndec.ac.in/images/Parminder%20Singh.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Dr.Punnet Pal Singh Cheema",
+      "description": "Chief Warden",
+      "image": "https://gndec.ac.in/images/IMG_0701%20(1).jpg"
+    },
+    {
+      "id": 3,
+      "title": "Dr.Chahat Jain",
+      "description": "Warden",
+      "image": "https://gndec.ac.in/images/chahat_pic.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Dr.Rajveer kaur ",
+      "description": "Warden",
+      "image": "https://gndec.ac.in/images/pppppp.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Sukhwinder kaur ",
+      "description": "Caretaker",
+      "image": "/public/mamsukh.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Baljinder kaur ",
+      "description": "Club Attendent",
+      "image": "/public/bal.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Guddi Devi ",
+      "description": "Caretaker",
+      "image": "/public/g.jpg"
+    },
+    {
+      "id": 8,
+      "title": "Harjinder kaur ",
+      "description": "Attendent",
+      "image": "/public/h.jpg"
+    }
+   
+  ]

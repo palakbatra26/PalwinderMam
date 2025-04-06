@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "name": "Anjali Yadav",
+      "branch": "B.Arch",
+      "year": "D4",
+      "designation": "Mess Head",
+      "imageUrl": "Anjali.jpg"
+    },
+ 
+    {
+      "id": 3,
+      "name": "Bhavneet Kaur",
+      "branch": "CSE",
+      "year": "D2",
+      "designation": "Mess Head",
+      "imageUrl": "public/no.png"
+    },
+    {
+      "id": 4,
+      "name": "Manjot Kaur",
+      "branch": "EE",
+      "year": "D2",
+      "designation": "Creative Head",
+      "imageUrl": "public/no.png"
+    },
+    {
+      "id": 5,
+      "name": "Rashmi Kumari",
+      "branch": "ECE",
+      "year": "D4",
+      "designation": "Welfare Head",
+      "imageUrl": "public/no.png"
+    },
+    {
+      "id": 6,
+      "name": "Diksha",
+      "branch": "EE",
+      "year": "D3",
+      "designation": "Welfare Head",
+      "imageUrl": "public/hath.jpg"
+    }
+  ]
