@@ -9,20 +9,29 @@
     },
  
     {
+      "id": 2,
+      "name": "Palak Batra",
+      "branch": "IT",
+      "year": "D3",
+      "designation": "Mess Head",
+      "imageUrl": "batra.jpg"
+    },
+ 
+    {
       "id": 3,
       "name": "Bhavneet Kaur",
       "branch": "CSE",
       "year": "D2",
       "designation": "Mess Head",
-      "imageUrl": "public/no.png"
+      "imageUrl": "https://static.thenounproject.com/png/236432-200.png"
     },
     {
       "id": 4,
-      "name": "Manjot Kaur",
+      "name": "Jashan Kaur",
       "branch": "EE",
       "year": "D2",
       "designation": "Creative Head",
-      "imageUrl": "public/no.png"
+      "imageUrl": "missjashan.jpg"
     },
     {
       "id": 5,
@@ -30,7 +39,7 @@
       "branch": "ECE",
       "year": "D4",
       "designation": "Welfare Head",
-      "imageUrl": "public/no.png"
+      "imageUrl": "https://static.thenounproject.com/png/236432-200.png"
     },
     {
       "id": 6,
@@ -38,6 +47,6 @@
       "branch": "EE",
       "year": "D3",
       "designation": "Welfare Head",
-      "imageUrl": "public/hath.jpg"
+      "imageUrl": "hath.jpg"
     }
   ]

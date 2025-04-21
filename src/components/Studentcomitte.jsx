@@ -8,10 +8,15 @@ function StudentCommittee() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 justify-center">
         {studentCommitteeData.map((member) => (
-          <div key={member.id} className="card shadow-sm w-80 h-[320px] overflow-hidden bg-yellow-50 text-black">
-            <figure className="w-full h-60">
-              <img src={member.imageUrl} alt={member.name} className="w-full h-full object-cover rounded-xl" />
-            </figure>
+          <div key={member.id} className="card shadow-sm w-80 h-[320px] bg-yellow-50 text-black">
+          <figure className="w-full h-60">
+  <img
+    src={member.imageUrl}
+    alt={member.name}
+    className="w-full h-full object-cover rounded-xl"
+    style={{ objectFit: 'cover' }}
+  />
+</figure>
             <div className="card-body items-center text-center p-2">
               <h2 className="card-title text-lg font-semibold">{member.name}</h2>
               <p className="text-sm">{member.designation} - {member.branch} ({member.year})</p>

@@ -1,20 +1,14 @@
 import React from 'react';
 
-
 function Home() {
   return (
-    <div className="bg-gray-100 min-h-screen flex justify-center items-center p-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-3xl w-full h-full overflow-y-auto text-center">
+    <div className="bg-gray-100 min-h-screen p-4"> {/* Removed flex and justify-center items-center */}
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-3xl mx-auto h-full overflow-y-auto text-center"> {/* Added mx-auto */}
         <h1 className="font-bold text-4xl text-blue-600 mb-6">Girls Hostel No 4 </h1>
-        {/* <p className="text-lg text-gray-700 mb-4">Nankana Sahib Education Trust</p>
-        <p className="text-lg text-gray-700 mb-6">Guru Nanak Engineering College, Gill Park, Ludhiana</p> */}
 
         <h2 className="font-semibold text-2xl text-blue-500 mt-6">Established by</h2>
         <p className="text-lg text-gray-700 mb-4">Respected Sardar Gurcharan Singh Tehat</p>
         <p className="text-lg text-gray-700 mb-6">Former President, Shiromani Gurdwara Parbandhak Committee on 21 December 1990</p>
-
-        {/* <h2 className="font-semibold text-2xl text-blue-500 mt-6">Inaugurated on</h2>
-        <p className="text-lg text-gray-700 mb-6">21 December 1990</p> */}
 
         <h2 className="font-semibold text-2xl text-blue-500 mt-6">Guru Nanak Engineering College</h2>
         <p className="text-lg text-gray-700 mb-4">
@@ -46,7 +40,6 @@ function Home() {
           In summary, Guru Nanak Engineering College stands as a significant educational institution in Punjab, providing quality education and essential facilities like
           hostels to support its diverse student body.
         </p>
-     
       </div>
     </div>
   );
