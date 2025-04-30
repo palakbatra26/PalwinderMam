@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { SignIn } from "@clerk/clerk-react";
+import { SignIn, SignedIn } from "@clerk/clerk-react";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -15,6 +15,7 @@ import RoomAllotment from "./components/RoomAllotment";
 import AdminPanel from "./components/AdminPanel";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PayFee from './components/PayFee';
+import ChatBot from "./components/ChatBot";
 
 export default function App() {
   return (
@@ -59,6 +60,7 @@ export default function App() {
         </Routes>
       </div>
       <Footer />
+      <ChatBot />
     </div>
   );
 }

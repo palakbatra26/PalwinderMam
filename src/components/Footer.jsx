@@ -19,7 +19,7 @@ function Footer() {
             </svg>
             <p className='text-center'>Copyright © {new Date().getFullYear()} - All rights reserved.</p>
             <p className="ml-0 md:ml-90 mt-2 md:mt-0 ">
-              Made by <a href="https://www.linkedin.com/in/palak-batra-718b31302/" target="_blank" rel="noopener noreferrer" style={{ color: 'lightblue', textDecoration: 'underline' }}>Palak Batra,Rupinder kaur, Tejider kaur</a> 
+              Made by <a href="https://www.linkedin.com/in/palak-batra-718b31302/" target="_blank" rel="noopener noreferrer" style={{ color: 'lightblue', textDecoration: 'underline' }}>Palak Batra,Rupinder kaur, Tejinder kaur</a> 
             </p>
           </div>
           <div className="flex items-center">
