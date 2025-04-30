@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { SignOutButton, useUser } from "@clerk/clerk-react";
 
 function Navbar() {
   const navigate = useNavigate();
+  const { isSignedIn, user } = useUser();
 
   const handleLogoClick = () => {
     navigate("/");
@@ -51,10 +53,11 @@ function Navbar() {
               <li><Link to={"/messmenu"} className="font-bold hover:text-yellow-300">Mess Info</Link></li>
               <li><Link to={"/facilities"} className="font-bold hover:text-yellow-300">Facilities</Link></li>
               <li><Link to="/Studentcomitte" className="font-bold hover:text-yellow-300">Student Committee</Link></li>
-              <li><a className="font-bold hover:text-yellow-300">Room Allotment</a></li>
+              <li><Link to="/room-allotment" className="font-bold hover:text-yellow-300">Room Allotment</Link></li>
               <li><Link to="/QueryForm" className="font-bold hover:text-yellow-300">Query Form </Link></li>
               <li><Link to="/helpline" className="font-bold hover:text-yellow-300">Helpline No</Link></li>
               <li><Link to="/notifications" className="font-bold hover:text-yellow-300">Notifications </Link></li>
+              <li><Link to="/payfee" className="font-bold hover:text-yellow-300">Pay Fee</Link></li>
             </ul>
           </div>
         </div>
@@ -66,14 +69,26 @@ function Navbar() {
             <li><Link to={"/messmenu"} className="font-bold hover:text-yellow-300">Mess Info</Link></li>
             <li><Link to={"/facilities"} className="font-bold hover:text-yellow-300">Facilities</Link></li>
             <li><Link to="/Studentcomitte" className="font-bold hover:text-yellow-300">Student Committee</Link></li>
-            <li><a className="font-bold hover:text-yellow-300">Room Allotment</a></li>
+            <li><Link to="/room-allotment" className="font-bold hover:text-yellow-300">Room Allotment</Link></li>
             <li><Link to="/QueryForm" className="font-bold hover:text-yellow-300">Query Form</Link></li>
             <li><Link to="/helpline" className="font-bold hover:text-yellow-300">Helpline No</Link></li>
             <li><Link to="/notifications" className="font-bold hover:text-yellow-300">Notifications </Link></li>
+            <li><Link to="/payfee" className="font-bold hover:text-yellow-300">Pay Fee</Link></li>
           </ul>
         </div>
         <div className="navbar-end">
-          {/* Removed the dark mode toggle */}
+          {isSignedIn ? (
+            <div className="flex items-center gap-4">
+              <span className="text-yellow-300 font-semibold">
+                {user?.firstName || 'User'}
+              </span>
+              <SignOutButton>
+                <button className="btn btn-sm bg-red-600 hover:bg-red-700 text-white border-none">
+                  Logout
+                </button>
+              </SignOutButton>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

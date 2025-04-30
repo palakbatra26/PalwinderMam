@@ -1,13 +1,16 @@
-// import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { BrowserRouter } from 'react-router-dom'
+import { ClerkProvider } from '@clerk/clerk-react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import './index.css';
+import App from './App.jsx';
+
+// Using the new publishable key
+const publishableKey = 'pk_test_YWxlcnQtaW1wYWxhLTQ0LmNsZXJrLmFjY291bnRzLmRldiQ';
 
 createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-    <BrowserRouter> {/* Wrap your App with BrowserRouter */}
+  <ClerkProvider publishableKey={publishableKey}>
+    <BrowserRouter>
       <App />
     </BrowserRouter>
-  // </React.StrictMode>
+  </ClerkProvider>
 );

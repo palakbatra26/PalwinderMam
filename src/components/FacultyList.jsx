@@ -4,8 +4,7 @@ import products from '../Data/products.json';
 
 function FacultyList() {
   const sortedProducts = products.sort((a, b) => {
-    // आप यहाँ अपनी सॉर्टिंग लॉजिक जोड़ सकते हैं
-    // उदाहरण के लिए, यदि आप चाहते हैं कि 'id' के अनुसार सॉर्ट हो:
+  
     return a.id - b.id;
   });
 
