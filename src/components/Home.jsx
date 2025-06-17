@@ -7,7 +7,7 @@ function Home() {
         <h1 className="font-bold text-4xl text-blue-600 mb-6">Girls Hostel No 4 </h1>
 
         <h2 className="font-semibold text-2xl text-blue-500 mt-6">Established by</h2>
-        <p className="text-lg text-gray-700 mb-4">Respected Sardar Gurcharan Singh Tehat</p>
+        <p className="text-lg text-gray-700 mb-4">Respected Sardar Gurcharan Singh Tohra</p>
         <p className="text-lg text-gray-700 mb-6">Former President, Shiromani Gurdwara Parbandhak Committee on 21 December 1990</p>
 
         <h2 className="font-semibold text-2xl text-blue-500 mt-6">Guru Nanak Engineering College</h2>

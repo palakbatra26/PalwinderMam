@@ -1,6 +1,0 @@
-{
-  "ignore": ["node_modules/*", "data.json"],
-  "delay": "2500",
-  "watch": ["server.js", "routes/*"],
-  "ext": "js,json"
-} 

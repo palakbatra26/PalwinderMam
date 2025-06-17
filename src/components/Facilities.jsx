@@ -44,9 +44,7 @@ function Facilities() {
           <div className="carousel-item min-w-[300px]">
             <img src="/kul.jpg" className="w-full h-64 md:h-96 object-cover" alt="New Image 3" />
           </div>
-          <div className="carousel-item min-w-[300px]">
-            <img src="/image2.jpg" className="w-full h-64 md:h-96 object-cover" alt="New Image 2" />
-          </div>
+        
           <div className="carousel-item min-w-[300px]">
             <img src="/image3.jpg" className="w-full h-64 md:h-96 object-cover" alt="New Image 3" />
           </div>

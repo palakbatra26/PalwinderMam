@@ -1,35 +1,43 @@
-import React from 'react';
-
-function NewsEventItem({ title, isNew, date }) { // Added 'date' prop
-  return (
-    <div style={{ 
-      backgroundColor: '#FFFACD', 
-      padding: '10px',
-      margin: '5px 0',
-      border: '1px solid #EEE8AA', 
-      borderRadius: '5px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between' // Added to space items
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center' }}> {/* Container for bullet, new, and title */}
-        <span style={{ marginRight: '10px', fontSize: '1.5em' }}>•</span> 
-        {isNew && <span style={{ marginRight: '5px', color: 'blue', fontSize: '1.2em' }}>🆕</span>} 
-        <span style={{ color: '#8B4513' }}>{title}</span> 
-      </div>
-      <span style={{ color: '#8B4513' }}>{date}</span> {/* Display date on the right */}
-    </div>
-  );
-}
+import React, { useEffect, useState } from 'react';
+import supabase from '../config/supabaseclient';
+import NotificationCard from '../components/NotificationCard'; // Correct import
 
 function NotificationsFormatted() {
+  const [fetchError, setFetchError] = useState(null);
+  const [notifi, setNotifi] = useState(null);
+
+  useEffect(() => {
+    const fetchSmoothies = async () => {
+      const { data, error } = await supabase
+        .from('hostel_notifications')
+        .select();
+
+      if (error) {
+        setFetchError('Could not fetch the notifications');
+        setNotifi(null);
+        console.error('Supabase fetch error:', error);
+      }
+
+      if (data) {
+        setNotifi(data);
+        setFetchError(null);
+        console.log('Fetched notifications:', data);
+      }
+    };
+
+    fetchSmoothies();
+  }, []);
+
   return (
-    <div style={{ padding: '20px' }}> 
-      <NewsEventItem 
-        title="New Hostel Timings: Morning 6:30 AM, Evening 7:00 PM (Effective 1 April 2025)" 
-        isNew={true} 
-        date="26 March 2025" // Added date prop
-      />
+    <div className="page home">
+      {fetchError && <p>{fetchError}</p>}
+      {notifi && (
+        <ol className="notifications" style={{ padding: 0, margin: 0, listStyle: 'decimal inside', mt: '1rem' }}>
+          {notifi.map((item) => (
+            <NotificationCard key={item.id} notifi={item} />
+          ))}
+        </ol>
+      )}
     </div>
   );
 }

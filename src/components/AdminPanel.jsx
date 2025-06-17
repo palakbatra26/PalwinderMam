@@ -27,17 +27,66 @@ export default function AdminPanel() {
     return <Navigate to="/" />;
   }
 
-  const fetchData = async () => {
+  const [token, setToken] = useState(localStorage.getItem('adminToken'));
+
+  const login = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/admin/data');
+      const response = await fetch('http://localhost:5000/api/admin/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: 'palakbatra79@gmail.com',
+          password: process.env.REACT_APP_ADMIN_PASSWORD || 'admin123'
+        })
+      });
+      
       const data = await response.json();
-      setRooms(data.rooms || []);
-      setNotifications(data.notifications || []);
-      setCommitteeMembers(data.committeeMembers || []);
+      if (response.ok) {
+        setToken(data.token);
+        localStorage.setItem('adminToken', data.token);
+      } else {
+        setError('Login failed: ' + data.message);
+      }
+    } catch (err) {
+      setError('Login failed: ' + err.message);
+    }
+  };
+
+  const fetchData = async () => {
+    if (!token) {
+      await login();
+      return;
+    }
+
+    try {
+      const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      };
+
+      // Fetch notifications
+      const notificationsRes = await fetch('http://localhost:5000/api/notifications', { headers });
+      const notificationsData = await notificationsRes.json();
+      setNotifications(notificationsData || []);
+
+      // Fetch committee members
+      const committeeRes = await fetch('http://localhost:5000/api/student-committee', { headers });
+      const committeeData = await committeeRes.json();
+      setCommitteeMembers(committeeData || []);
+
       setLoading(false);
     } catch (err) {
-      setError('Failed to fetch data');
-      setLoading(false);
+      if (err.message.includes('401')) {
+        // Token expired or invalid, try to login again
+        localStorage.removeItem('adminToken');
+        setToken(null);
+        await login();
+      } else {
+        setError('Failed to fetch data: ' + err.message);
+        setLoading(false);
+      }
     }
   };
 
@@ -73,86 +122,124 @@ export default function AdminPanel() {
 
   const handleAddNotification = async (notificationData) => {
     try {
-      const response = await fetch('http://localhost:3000/api/admin/notifications', {
+      const response = await fetch('http://localhost:5000/api/notifications', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(notificationData),
       });
       if (response.ok) {
         fetchData(); // Refresh data
+      } else {
+        const data = await response.json();
+        setError('Failed to add notification: ' + data.message);
       }
     } catch (err) {
-      setError('Failed to add notification');
+      setError('Failed to add notification: ' + err.message);
     }
   };
 
-  const handleDeleteNotification = async (index) => {
+  const handleDeleteNotification = async (notificationId) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/admin/notifications/${index}`, {
+      const response = await fetch(`http://localhost:5000/api/notifications/${notificationId}`, {
         method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
       if (response.ok) {
         fetchData(); // Refresh data
+      } else {
+        const data = await response.json();
+        setError('Failed to delete notification: ' + data.message);
       }
     } catch (err) {
-      setError('Failed to delete notification');
+      setError('Failed to delete notification: ' + err.message);
     }
   };
 
   const handleAddCommitteeMember = async (memberData) => {
     try {
-      const response = await fetch('http://localhost:3000/api/admin/committee', {
+      const response = await fetch('http://localhost:5000/api/student-committee', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(memberData),
       });
       if (response.ok) {
         fetchData();
+      } else {
+        const data = await response.json();
+        setError('Failed to add committee member: ' + data.message);
       }
     } catch (err) {
-      setError('Failed to add committee member');
+      setError('Failed to add committee member: ' + err.message);
     }
   };
 
   const handleDeleteCommitteeMember = async (memberId) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/admin/committee/${memberId}`, {
+      const response = await fetch(`http://localhost:5000/api/student-committee/${memberId}`, {
         method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
       if (response.ok) {
         fetchData();
+      } else {
+        const data = await response.json();
+        setError('Failed to delete committee member: ' + data.message);
       }
     } catch (err) {
-      setError('Failed to delete committee member');
+      setError('Failed to delete committee member: ' + err.message);
     }
   };
 
   const handleEditCommitteeMember = async (memberId, memberData) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/admin/committee/${memberId}`, {
+      const response = await fetch(`http://localhost:5000/api/student-committee/${memberId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(memberData),
       });
       if (response.ok) {
         fetchData();
+      } else {
+        const data = await response.json();
+        setError('Failed to edit committee member: ' + data.message);
       }
     } catch (err) {
-      setError('Failed to edit committee member');
+      setError('Failed to edit committee member: ' + err.message);
     }
   };
 
   useEffect(() => {
-    if (isAdmin) {
+    const initializeAdmin = async () => {
+      if (isAdmin) {
+        if (!token) {
+          await login();
+        }
+        await fetchData();
+      }
+    };
+
+    initializeAdmin();
+  }, [isAdmin]);
+
+  // Handle token changes
+  useEffect(() => {
+    if (token) {
       fetchData();
     }
-  }, [isAdmin]);
+  }, [token]);
 
   return (
     <div className="container mx-auto px-4 py-8 bg-gray-50 min-h-screen">
@@ -502,4 +589,4 @@ export default function AdminPanel() {
       </div>
     </div>
   );
-} 
+}
